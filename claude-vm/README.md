@@ -33,4 +33,72 @@ wsl -u root
 whoami
 ```
 
-5.  
+5.  Next we need to edit a configuration file. Type
+
+```PowerShell
+nano /etc/nixos/configuration.nix
+```
+
+6.  Hold down Ctrl+K until the file is empty. Then paste in the following text, and Ctrl+X to save it.
+
+```nix
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+# NixOS-WSL specific options are documented on the NixOS-WSL repository:
+# https://github.com/nix-community/NixOS-WSL
+
+{ config, lib, pkgs, ... }:
+
+{
+  imports = [
+    # include NixOS-WSL modules
+    <nixos-wsl/modules>
+  ];
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.tesco = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
+
+  wsl.enable = true;
+  wsl.defaultUser = "tesco";
+  networking.hostName = "nixos";
+
+  # List packages installed in system profile.
+  # You can use https://search.nixos.org/ to find more packages (and options).
+  environment.systemPackages = with pkgs; [
+    # Flakes clones its dependencies through the git command,
+    # so git must be installed first
+    git
+    vim # The Nano editor is also installed by default.
+    wget
+    inetutils
+    tree
+  ];
+
+  programs = {
+    git.enable = true;
+  };
+
+  # Enable the Flakes feature and the accompanying new nix command-line tool
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "tesco" ];
+  };
+
+  # Set the default editor to vim
+  environment.variables.EDITOR = "vim";
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It's perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.11"; # Did you read the comment?
+}
+```
+
