@@ -25,6 +25,9 @@ The point of the microVMs is that they are lightweight sandboxes to run Claude i
 to `$WORK_DIR` and its subdirectories, and requires explicit authorization for external access through any kind of port. You can 
 of course override these defaults. This should be done by whitelisting. That means, you should only allow specific exceptions to
 the defaults, whether or not you run Claude with `--dangerously-skip-permissions` (also known as "YOLO mode").
+
+
+## Warning
  
 **DO NOT TRUST CLAUDE**. I recommend that all external access including to your file system is read-only. This may slow 
 down your workflow a tiny bit, but it will stop Claude from bricking your computer and deleting the repo.
