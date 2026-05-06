@@ -108,15 +108,22 @@ nano /etc/nixos/configuration.nix
 nixos-rebuild switch
 ```
 
-8. Exit to PowerShell by typing
+8. Set the password for account `tesco`.
+
+```bash
+passwd tesco
+```
+
+9. Exit to PowerShell by typing
 
 ```bash
 exit
 ```
 
-9. Return to NixOS. You should now be logged in as user `tesco`.
+10. Terminate the NixOS VM, and then restart it. After this, you should be logged in as user `tesco`.
 
 ```PowerShell
+wsl -t nixos
 wsl
 ```
 
