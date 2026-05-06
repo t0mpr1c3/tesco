@@ -146,23 +146,13 @@ sudo nano /etc/nixos/flake.nix
       url = "github:t0mpr1c3/claude-microvm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
-    claude-vm,
-    sops-nix,
-    home-manager
+    claude-vm
   }:
     let
       system = "x86_64-linux";
@@ -175,14 +165,8 @@ sudo nano /etc/nixos/flake.nix
         {
           nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         })
-        sops-nix.nixosModules.sops
       ];
       system.stateVersion = "25.11";
-    };
-
-    homeConfigurations.tesco = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./home.nix ];
     };
 
     # `nix develop /etc/nixos` starts a shell that provides `microvm-run`
