@@ -27,4 +27,10 @@ wsl -s nixos
 wsl -u root
 ```
 
-    You should see a welcome message and a different console prompt. Type `whoami` to check that you are logged in as `root`.
+4.  You should see a welcome message and a different console prompt. To check that you are logged in as `root`, type
+
+```PowerShell
+whoami
+```
+
+5.  
