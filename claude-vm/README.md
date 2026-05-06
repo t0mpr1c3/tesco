@@ -184,6 +184,13 @@ sudo nano /etc/nixos/flake.nix
 sudo nixos-rebuild switch --impure
 ```
 
+14. Make files for Claude settings and secrets:
+
+```bash
+mkdir -p ~/.claude
+echo '{}' > ~/.claude/settings.json
+```
+
 14. Clone the directory that sets up the microVM(s) that Claude runs in and view the README that contains further instructions:
 
 ```bash
