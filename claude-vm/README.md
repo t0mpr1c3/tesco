@@ -26,7 +26,7 @@ to `$WORK_DIR` and its subdirectories, and requires explicit authorization for e
 of course override these defaults. This should be done by whitelisting. That means, you should only allow specific exceptions to
 the defaults, whether or not you run Claude with `--dangerously-skip-permissions` (also known as "YOLO mode").
  
-Claude is not a trusted entity. I recommend that all external access including to your file system is read-only. This may slow 
+**DO NOT TRUST CLAUDE**. I recommend that all external access including to your file system is read-only. This may slow 
 down your workflow a tiny bit, but it will stop Claude from bricking your computer and deleting the repo.
  
 
