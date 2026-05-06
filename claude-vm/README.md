@@ -29,13 +29,13 @@ wsl -u root
 
 4.  You should see a welcome message and a different console prompt. To check that you are logged in as `root`, type
 
-```PowerShell
+```bash
 whoami
 ```
 
 5.  Next we need to edit a configuration file. Type
 
-```PowerShell
+```bash
 nano /etc/nixos/configuration.nix
 ```
 
@@ -100,5 +100,23 @@ nano /etc/nixos/configuration.nix
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
 }
+```
+
+7. Update the environment by typing
+
+```bash
+nixos-rebuild switch
+```
+
+8. Exit to PowerShell by typing
+
+```bash
+exit
+```
+
+9. Return to NixOS. You should now be logged in as user `tesco`.
+
+```PowerShell
+wsl
 ```
 
