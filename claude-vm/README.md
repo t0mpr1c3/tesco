@@ -7,7 +7,9 @@ Let's get set up with Claude in WSL locally and try to run VScode in it. If that
  
 The basic idea is that we are going to install a Linux VM in WSL, and from there spin up a secure sandbox (called a microVM) 
 every time we want to run Claude. Each instance of Claude runs from inside its own sandbox. By default the sandboxes have 
-restrictive permissions so that Claude only has access to a specified work directory.
+restrictive permissions so that Claude only has access to a specified work directory. These restrictive permissions, 
+together with the fact the microVM cannot directly access the system commands in the parent OS, are what provides some
+security when you let Claude loose on your computer with the ability to write its own shell scripts and run them.
  
 First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine. Then follow the 
 instructions below.
