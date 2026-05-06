@@ -11,7 +11,7 @@ wsl --install --no-distribution
 2.  Next, install the linux environment that we'll be using to create the claude VM(s).
     We will be installing NixOS. 
     It's more complicated than a normal Linux install, but you get better control over the process.
-    Download the latest nixos.wsl to your Downloads folder from the [NixOS-WSL releases page](https://github.com/nix-community/NixOS-WSL/releases/latest).
+    Download the latest `nixos.wsl` to your Downloads folder from the [NixOS-WSL releases page](https://github.com/nix-community/NixOS-WSL/releases/latest).
     In PowerShell, type :
 
 ```PowerShell
