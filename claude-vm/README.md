@@ -27,13 +27,13 @@ wsl -s nixos
 wsl -u root
 ```
 
-4.  You should see a welcome message and a different console prompt. To check that you are logged in as `root`, type:
+4.  You should see a welcome message and a different console prompt. Check that you are logged in as `root`:
 
 ```bash
 whoami
 ```
 
-5.  Next we need to edit a configuration file. Type:
+5.  Next we need to edit a configuration file:
 
 ```bash
 nano /etc/nixos/configuration.nix
@@ -103,7 +103,7 @@ nano /etc/nixos/configuration.nix
 }
 ```
 
-7. Update the environment by typing:
+7. Update the environment:
 
 ```bash
 nixos-rebuild boot
@@ -115,7 +115,7 @@ nixos-rebuild boot
 passwd tesco
 ```
 
-9. Exit to PowerShell by typing:
+9. Exit to PowerShell:
 
 ```bash
 exit
@@ -128,7 +128,7 @@ wsl -t nixos
 wsl
 ```
 
-11.  Now we need to edit another file. Type:
+11.  Now we need to edit another file:
 
 ```bash
 sudo nano /etc/nixos/flake.nix
@@ -178,7 +178,7 @@ sudo nano /etc/nixos/flake.nix
 }
 ```
 
-13. Rebuild the environment by typing:
+13. Rebuild the environment:
 
 ```bash
 sudo nixos-rebuild switch --impure
