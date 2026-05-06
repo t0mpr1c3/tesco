@@ -130,6 +130,6 @@ wsl
 11.  Now we need to edit another file. Type
 
 ```bash
-nano /etc/nixos/flake.nix
+sudo nano /etc/nixos/flake.nix
 ```
 
