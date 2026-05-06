@@ -74,6 +74,7 @@ nano /etc/nixos/configuration.nix
     # so git must be installed first
     git
     vim # The Nano editor is also installed by default.
+    gnumake
     wget
     inetutils
     tree
@@ -183,10 +184,11 @@ sudo nano /etc/nixos/flake.nix
 sudo nixos-rebuild switch --impure
 ```
 
-14. Clone the directory that sets up the microVM(s) that Claude runs in:
+14. Clone the directory that sets up the microVM(s) that Claude runs in and view the README that contains further instructions:
 
 ```bash
 cd ~
 git clone https://github.com/t0mpr1c3/claude-microvm.git
+cat claude-microvm/README
 ```
 
