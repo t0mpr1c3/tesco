@@ -21,5 +21,10 @@ wsl -s nixos
 ```
 
 3.  NixOS should now be set as the default WSL environment. To enter the environment, go to your Powershell
-    window and type `wsl -u root`. You should see a welcome message and a different console prompt. Type
-    `whoami` to check that you are logged in as `root`.
+    window and type
+
+```PowerShell
+wsl -u root
+```
+
+    You should see a welcome message and a different console prompt. Type `whoami` to check that you are logged in as `root`.
