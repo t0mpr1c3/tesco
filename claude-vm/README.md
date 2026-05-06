@@ -1,6 +1,7 @@
 # Instructions for setting up Claude Code on WSL2
 
 1. First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine.
+   Open PowerShell with admin privileges and type
 
 ```PowerShell
 wsl --install --no-distribution
