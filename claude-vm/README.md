@@ -3,9 +3,8 @@
 
 ## Environment
 
-Let's get set up with Claude in WSL locally and try to run VScode in it. If that doesn't work well, we can try VMware. 
-WSL is preferable to VMware because WSL VMs can access the parent filesystem. The downside is that WSL graphics use Wayland
-and the drivers are not very good.
+Let's get set up with Claude in WSL. If that doesn't work well, we can try VMware. WSL is preferable to VMware because 
+WSL VMs can access the parent filesystem. The downside is that WSL graphics use Wayland and the drivers are not very good.
  
 The basic idea is that we are going to install a Linux VM in WSL, and from there spin up a secure sandbox (called a microVM) 
 every time we want to run Claude. Each instance of Claude runs from inside its own sandbox. By default the sandboxes have 
@@ -244,13 +243,17 @@ cat claude-microvm/README
 
 ## Running Claude from VScode
 
-I don't know anything about running Claude Code with VScode but to sandbox it from WSL you would need to do the following steps.
+I don't know anything much about running Claude Code with VScode. As far as I can tell, VScore is not particularly useful for our workflow.
+
+If you want to try running VScode inside a WSL sandbox you probably need to do the following steps:
 
 1. Configure WSL to use wayland. Recent installs should run without any configuration.
 
-2. Install VScode in NixOS: e.g. edit `/etc/nixos/configuration.nix` to add `vscode` to `environment.systemPackage`s, then do `sudo nixos-rebuild switch --impure`.
+2. Install VScode in NixOS: e.g. edit `/etc/nixos/configuration.nix` to add `vscode` to `environment.systemPackages`,
+   then do `sudo nixos-rebuild switch --impure`.
 
-3. Add whatever plugins you need, e.g. https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt, https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code.
+3. Add whatever plugins you need, e.g. https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt,
+   https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code.
 
 4. Run VScode inside the microVM.
    * Easy way: press Ctrl-C after the microVM has started up but before Claude Code has loaded, then run VScode from the command line.
@@ -258,4 +261,10 @@ I don't know anything about running Claude Code with VScode but to sandbox it fr
      
 You can use VScode with the WSL plugin to edit files in your NixOS VM, but don't try to use this set up together with the Claude plugin. 
 What provides security is not the VM itself but the microVM sandboxes that run inside it.
+
+
+## Further reading
+
+https://code.claude.com/docs/en/sandboxing
+
 
