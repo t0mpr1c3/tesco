@@ -4,7 +4,7 @@
 ## Environment
 
 Let's get set up with Claude in WSL locally and try to run VScode in it. If that doesn't work well, we can try VMware. 
-WSL is preferable to VMware because WSL VMs have native access to the parent filesystem.
+WSL is preferable to VMware because WSL VMs can access the parent filesystem.
  
 The basic idea is that we are going to install a Linux VM in WSL, and from there spin up a secure sandbox (called a microVM) 
 every time we want to run Claude. Each instance of Claude runs from inside its own sandbox. By default the sandboxes have 
