@@ -187,6 +187,6 @@ sudo nixos-rebuild switch --impure
 
 ```bash
 cd ~
-
+git clone https://github.com/t0mpr1c3/claude-microvm.git
 ```
 
