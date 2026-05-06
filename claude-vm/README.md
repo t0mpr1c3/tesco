@@ -2,7 +2,7 @@
 
 1. First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine.
    Your machine must have virtualization enabled. If you have VMware installed, it already does.
-   Open PowerShell with admin privileges and type
+   Open PowerShell with admin privileges and type:
 
 ```PowerShell
 wsl --install --no-distribution
@@ -12,7 +12,7 @@ wsl --install --no-distribution
     We will be installing NixOS. 
     It's more complicated than a normal Linux install, but you get better control over the process.
     Download the latest nixos.wsl to your Downloads folder from the [NixOS-WSL releases page](https://github.com/nix-community/NixOS-WSL/releases/latest).
-    In PowerShell, type 
+    In PowerShell, type :
 
 ```PowerShell
 cd $env:USERPROFILE\Downloads
@@ -21,25 +21,25 @@ wsl -s nixos
 ```
 
 3.  NixOS should now be set as the default WSL environment. To enter the environment, go to your Powershell
-    window and type
+    window and type:
 
 ```PowerShell
 wsl -u root
 ```
 
-4.  You should see a welcome message and a different console prompt. To check that you are logged in as `root`, type
+4.  You should see a welcome message and a different console prompt. To check that you are logged in as `root`, type:
 
 ```bash
 whoami
 ```
 
-5.  Next we need to edit a configuration file. Type
+5.  Next we need to edit a configuration file. Type:
 
 ```bash
 nano /etc/nixos/configuration.nix
 ```
 
-6.  Hold down Ctrl+K until the file is empty. Then paste in the following text, and Ctrl+X to save it.
+6.  Hold down Ctrl+K until the file is empty. Then paste in the following text, and Ctrl+X to save it:
 
 ```nix
 # Edit this configuration file to define what should be installed on
@@ -102,38 +102,38 @@ nano /etc/nixos/configuration.nix
 }
 ```
 
-7. Update the environment by typing
+7. Update the environment by typing:
 
 ```bash
 nixos-rebuild boot
 ```
 
-8. Set the password for account `tesco`.
+8. Set the password for account `tesco`:
 
 ```bash
 passwd tesco
 ```
 
-9. Exit to PowerShell by typing
+9. Exit to PowerShell by typing:
 
 ```bash
 exit
 ```
 
-10. Terminate the NixOS VM, and then restart it. After this, you should be logged in as user `tesco`.
+10. Terminate the NixOS VM, and then restart it. After this, you should be logged in as user `tesco`:
 
 ```PowerShell
 wsl -t nixos
 wsl
 ```
 
-11.  Now we need to edit another file. Type
+11.  Now we need to edit another file. Type:
 
 ```bash
 sudo nano /etc/nixos/flake.nix
 ```
 
-12. Enter and save the following text
+12. Enter and save the following text:
 
 ```nix
 {
@@ -177,8 +177,16 @@ sudo nano /etc/nixos/flake.nix
 }
 ```
 
-13. Rebuild the environment by typing
+13. Rebuild the environment by typing:
 
 ```bash
 sudo nixos-rebuild switch --impure
 ```
+
+14. Clone the directory that sets up the microVM(s) that Claude runs in:
+
+```bash
+cd ~
+
+```
+
