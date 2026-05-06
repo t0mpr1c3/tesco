@@ -1,7 +1,7 @@
 # Instructions for setting up Claude Code on WSL2
 
 
-## Structure
+## Environment
 
 Let's get set up with Claude in WSL locally and try to run VScode in it. If that doesn't work well, we can try VMware. 
  
