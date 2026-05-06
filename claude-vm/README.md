@@ -10,17 +10,22 @@ every time we want to run Claude. Each instance of Claude runs from inside its o
 restrictive permissions so that Claude only has access to a specified work directory. These restrictive permissions, 
 together with the fact the microVM cannot directly access the system commands in the parent OS, are what provides some
 security when you let Claude loose on your computer with the ability to write its own shell scripts and run them.
- 
+
+#### Installation
 First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine. Then follow the 
 instructions below.
- 
+
+#### Running Claude
 When you have got the NixOS VM properly set up, Claude Code should run automatically in the console when you start up an 
 instance using one of the methods described in https://github.com/t0mpr1c3/claude-microvm/blob/main/README.md 
 
+#### Authentication
 Authenticate using method 1 (by logging in via a URL). I will set my email to automatically forward emails from Anthropic to you. 
 
+#### Settings
 To change Claude's settings, edit `~/.claude/settings.json` in the NixOS VM.
- 
+
+#### Permissions
 The point of the microVMs is that they are lightweight sandboxes to run Claude instances in. By default, Claude only has access 
 to `$WORK_DIR` and its subdirectories, and requires explicit authorization for external access through any kind of port. You can 
 of course override these defaults. This should be done by whitelisting. That means, you should only allow specific exceptions to
