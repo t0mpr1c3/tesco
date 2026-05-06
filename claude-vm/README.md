@@ -133,3 +133,63 @@ wsl
 sudo nano /etc/nixos/flake.nix
 ```
 
+12. Enter and save the following text
+
+```nix
+{
+  description = "Set up microvm environment";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    claude-vm = {
+      url = "github:t0mpr1c3/claude-microvm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    claude-vm,
+    sops-nix,
+    home-manager
+  }:
+    let
+      system = "x86_64-linux";
+    in
+  {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./configuration.nix
+        ({ pkgs, config, lib, ... }:
+        {
+          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+        })
+        sops-nix.nixosModules.sops
+      ];
+      system.stateVersion = "25.11";
+    };
+
+    homeConfigurations.tesco = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ ./home.nix ];
+    };
+
+    # `nix develop /etc/nixos` starts a shell that provides `microvm-run`
+    devShells.${system}.default = nixpkgs-unstable.legacyPackages.${system}.mkShell {
+      packages = [ claude-vm.packages.${system}.vm ];
+    };
+  };
+}
+```
+
