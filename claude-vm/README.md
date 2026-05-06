@@ -5,19 +5,27 @@
 
 Let's get set up with Claude in WSL locally and try to run VScode in it. If that doesn't work well, we can try VMware. 
  
-The basic idea is that we are going to install a Linux VM in WSL, and from there spin up a secure sandbox (called a microVM) every time we want to run Claude. Each instance of Claude runs from inside its own sandbox. By default the sandboxes have restrictive permissions so that Claude only has access to a specified work directory.
+The basic idea is that we are going to install a Linux VM in WSL, and from there spin up a secure sandbox (called a microVM) 
+every time we want to run Claude. Each instance of Claude runs from inside its own sandbox. By default the sandboxes have 
+restrictive permissions so that Claude only has access to a specified work directory.
  
-First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine. Then follow the instructions below.
+First, you'll need to install WSL2. You'll need to open an IT ticket for permissions on a TESCO machine. Then follow the 
+instructions below.
  
-When you have got the NixOS VM properly set up, Claude Code should run automatically in the console when you start it up using one of the methods described in https://github.com/t0mpr1c3/claude-microvm/blob/main/README.md 
+When you have got the NixOS VM properly set up, Claude Code should run automatically in the console when you start up an 
+instance using one of the methods described in https://github.com/t0mpr1c3/claude-microvm/blob/main/README.md 
 
 Authenticate using method 1 (by logging in via a URL). I will set my email to automatically forward emails from Anthropic to you. 
 
 To change Claude's settings, edit `~/.claude/settings.json` in the NixOS VM.
  
-The point of the microVMs is that they are lightweight sandboxes to run Claude instances in. By default, Claude only has access to `$WORK_DIR` and its subdirectories, and requires explicit authorization for external access through any kind of port. You can of course override these defaults. This should be done by whitelisting, i.e. only allow explicit exceptions to the defaults, whether or not you run Claude with `--dangerously-skip-permissions`.
+The point of the microVMs is that they are lightweight sandboxes to run Claude instances in. By default, Claude only has access 
+to `$WORK_DIR` and its subdirectories, and requires explicit authorization for external access through any kind of port. You can 
+of course override these defaults. This should be done by whitelisting, i.e. only allow explicit exceptions to the defaults, 
+whether or not you run Claude with `--dangerously-skip-permissions`.
  
-Claude is not a trusted entity. I recommend that all external access including to your file system is read-only. This may slow down your workflow a tiny bit, but it will stop Claude from bricking your computer and deleting the repo.
+Claude is not a trusted entity. I recommend that all external access including to your file system is read-only. This may slow 
+down your workflow a tiny bit, but it will stop Claude from bricking your computer and deleting the repo.
  
 
 ## Instructions
@@ -33,7 +41,8 @@ wsl --install --no-distribution
 2.  Next, install the linux environment that we'll be using to create the claude VM(s).
     We will be installing NixOS. 
     It's more complicated than a normal Linux install, but you get better control over the process.
-    Download the latest `nixos.wsl` to your Downloads folder from the [NixOS-WSL releases page](https://github.com/nix-community/NixOS-WSL/releases/latest).
+    Download the latest `nixos.wsl` to your Downloads folder from the
+    [NixOS-WSL releases page](https://github.com/nix-community/NixOS-WSL/releases/latest).
     In PowerShell, type :
 
 ```PowerShell
@@ -51,13 +60,13 @@ wsl -u root
 
 4.  You should see a welcome message and a different console prompt. Check that you are logged in as `root`:
 
-```bash
+```sh
 whoami
 ```
 
 5.  Next we need to edit a configuration file:
 
-```bash
+```sh
 nano /etc/nixos/configuration.nix
 ```
 
@@ -127,13 +136,13 @@ nano /etc/nixos/configuration.nix
 
 7. Update the environment:
 
-```bash
+```sh
 nixos-rebuild boot
 ```
 
 8. Set the password for account `tesco`:
 
-```bash
+```sh
 passwd tesco
 ```
 
@@ -152,7 +161,7 @@ wsl
 
 11.  Now we need to edit another file:
 
-```bash
+```sh
 sudo nano /etc/nixos/flake.nix
 ```
 
@@ -202,20 +211,20 @@ sudo nano /etc/nixos/flake.nix
 
 13. Rebuild the environment:
 
-```bash
+```sh
 sudo nixos-rebuild switch --impure
 ```
 
 14. Make files for Claude settings and secrets:
 
-```bash
+```sh
 mkdir -p ~/.claude
 echo '{}' > ~/.claude/settings.json
 ```
 
 14. Clone the directory that sets up the microVM(s) that Claude runs in and view the README that contains further instructions:
 
-```bash
+```sh
 cd ~
 git clone https://github.com/t0mpr1c3/claude-microvm.git
 cat claude-microvm/README
