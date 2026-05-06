@@ -177,3 +177,8 @@ sudo nano /etc/nixos/flake.nix
 }
 ```
 
+13. Rebuild the environment by typing
+
+```bash
+sudo nixos-rebuild switch --impure
+```
