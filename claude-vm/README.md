@@ -7,5 +7,6 @@ wsl --install --no-distribution
 ```
 
 2.  Next, install the linux environment that we'll be using to create the claude VM(s).
-    We will be using NixOS. It's more complicated than a normal linux install, but you better control over the process.
+    This step will also need admin privileges. We will be installing NixOS. 
+    It's more complicated than a normal linux install, but you get better control over the process.
     Follow steps 1-7 from https://www.greghilston.com/post/nixos-on-wsl/#installing-wsl2-with-nixos
