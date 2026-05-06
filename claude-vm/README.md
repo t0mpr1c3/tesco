@@ -102,16 +102,16 @@ nano /etc/nixos/configuration.nix
 }
 ```
 
-7. Update the environment by typing
-
-```bash
-nixos-rebuild switch
-```
-
-8. Set the password for account `tesco`.
+7. Set the password for account `tesco`.
 
 ```bash
 passwd tesco
+```
+
+8. Update the environment by typing
+
+```bash
+nixos-rebuild boot --impure
 ```
 
 9. Exit to PowerShell by typing
